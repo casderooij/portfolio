@@ -16,8 +16,8 @@ class About extends Model
         'email',
     ];
 
-    // protected $casts = [
-    //     'text' => 'array',
-    //     'social' => 'array',
-    // ];
+    protected $casts = [
+        'text' => 'array',
+        'social' => 'array',
+    ];
 }
