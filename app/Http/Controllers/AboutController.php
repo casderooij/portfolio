@@ -9,7 +9,7 @@ class AboutController extends Controller
 {
     public function aboutShow() {
         $about = About::first();
-        return $about;
+        return $about->toArray();
     }
 
     public function index() {
