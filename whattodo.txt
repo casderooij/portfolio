@@ -1,0 +1,13 @@
+* data is json format
+* tags are set with pivot table
+
+* blocks component
+* block height by amount of dates
+* block top in comparison to current date
+
+* make columns where the blocks live in
+* make functionality for z-index hover (also background-color, transform and box-shadow)
+* make menu (responsive)
+* today line
+* year lines
+* random highlighted project
