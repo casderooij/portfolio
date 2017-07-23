@@ -8,8 +8,7 @@ use App\About;
 class AboutController extends Controller
 {
     public function aboutShow() {
-        $about = About::first();
-        return $about->toArray();
+        return About::all();
     }
 
     public function index() {
