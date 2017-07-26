@@ -23,6 +23,9 @@ class AboutTableSeeder extends Seeder{
 
     public function run(){
 
+        $start = Carbon::createFromDate(2014, 11, 15);
+        $end = Carbon::createFromDate(2015, 2, 2);
+
         DB::table('about')->insert(array(
             'name' => 'Interaction Design',
             'photo' => 'profiel.jpg',
@@ -30,5 +33,18 @@ class AboutTableSeeder extends Seeder{
             'social' => '[{"socialmedia":"twitter","url":"twitter.com"},{"socialmedia":"facebook","url":"facebook.com"}]',
             'email' => 'casdrooij@gmail.com'
         ));
+
+        DB::table('projects')->insert([
+            'title' => 'Test project',
+            'description' => '["This is test 1","Second paragraph"]',
+            'meta' => '{"collaboration":[{"name":"Cas de Rooij","url":"http:\/\/www.casderooij.nl"},{"name":"John Doe","url":"http:\/\/www.johndoe.com"}],"location":"Rotterdam"}',
+            'images' => '[]',
+            'video_url' => '',
+            'startdate' => $start,
+            'enddate' => $end,
+            'year' => '[2014, 2015]',
+            'days' => $start->diffInDays($end),
+            'block_position' => '{"block_col":"2","block_z_index":"2","block_left":"10","bg_color":"#fccc30"}',
+        ]);
     }
 }
