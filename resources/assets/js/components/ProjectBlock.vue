@@ -1,6 +1,6 @@
 <template>
     <div class="block-container">
-            <a class="project-container col" v-for="project in projects" v-bind:style="{
+            <a class="project-container col" v-for="(project, index) in projects" v-bind:style="{
                     left: project.block_position.block_left / 8 + 'rem',
                     backgroundColor: project.block_position.bg_color,
                     height: project.days * space / 8 + 'rem',
@@ -9,7 +9,7 @@
                 }"
                 v-bind:class="'timeline-col-' + project.block_position.block_col"
                 v-bind:href="'/project/' + project.id"
-                v-bind:id="randomId[project.id - 1]"
+                v-bind:id="randomId[index]"
                 >
                 {{ project.title }}
             </a>
@@ -42,9 +42,9 @@
                 }
             });
 
-            setTimeout(setInterval(() => {
+            setInterval(() => {
                 this.pickRandomId(this.projects);
-            }, 5000), 5000);
+            }, 5000);
         },
         methods: {
             daysPassed: function(project) {
@@ -58,16 +58,16 @@
             pickRandomId: function(projects) {
                 let idArray = [];
 
-                let randomId = Math.floor(1 + Math.random() * projects.length);
+                let randomId = Math.floor(Math.random() * projects.length);
 
-                for(let x in projects) {
-                    let project = projects[x];
-                    if(project.id === randomId) {
+                projects.forEach(function(project, i) {
+                    if(i === randomId) {
                         idArray.push('isActive');
                     } else {
                         idArray.push('isNotActive');
                     }
-                }
+                });
+
                 return this.randomId = idArray;
             }
         }
@@ -94,7 +94,6 @@
 
 #isActive {
     z-index: 100 !important;
-    /*background-color: white !important;*/
     box-shadow: 0.4rem 0.4rem;
     transform: translate(-0.4rem, -0.4rem);
 }
