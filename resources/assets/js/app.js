@@ -6,6 +6,10 @@
 
 window.Vue = require('vue');
 
+Vue.config.devtools = false;
+Vue.config.debug = false;
+Vue.config.silent = true;
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
