@@ -14,12 +14,14 @@
         <div class="project-content">
 
             <div class="project-content-left">
+                @if(count($project->tags))
                 <div class="project-tag-container">
                     <p class="tag-header">tags:</p>
-                    @foreach($project->tags as $tag)
-                        <a href="/tags/{{ $tag->id }}" class="project-tag">{{ $tag->name }}</a>
-                    @endforeach
+                        @foreach($project->tags as $tag)
+                            <a href="/tags/{{ $tag->id }}" class="project-tag">{{ $tag->name }}</a>
+                        @endforeach
                 </div>
+                @endif
                 @if($project->meta["collaboration"])
                     <div class="project-collaboration-container">
                         <p class="collaboration-header">collaboration:</p>
