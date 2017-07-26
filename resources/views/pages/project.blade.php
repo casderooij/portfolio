@@ -43,9 +43,9 @@
                 <div class="project-description">
                     @for($i = 0; $i < count($project->description); $i++)
                         @if($i === 0)
-                            <p class="project-first-description-paragraph">{{ $project->description[$i] }}</p>
+                            <p class="project-first-description-paragraph">{!! $project->description[$i] !!}</p>
                         @else
-                            <p class="project-description-paragraph">{{ $project->description[$i] }}</p>
+                            <p class="project-description-paragraph">{!! $project->description[$i] !!}</p>
                         @endif
                     @endfor
                 </div>
