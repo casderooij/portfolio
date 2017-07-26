@@ -40,11 +40,11 @@
                 for(let x in projects) {
                     this.daysPassed(projects[x]);
                 }
-
-                setInterval(() => {
-                    this.pickRandomId(projects);
-                }, 5000);
             });
+
+            setTimeout(setInterval(() => {
+                this.pickRandomId(this.projects);
+            }, 5000), 5000);
         },
         methods: {
             daysPassed: function(project) {

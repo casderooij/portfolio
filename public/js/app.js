@@ -1979,11 +1979,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             for (var x in projects) {
                 _this.daysPassed(projects[x]);
             }
-
-            setInterval(function () {
-                _this.pickRandomId(projects);
-            }, 5000);
         });
+
+        setTimeout(setInterval(function () {
+            _this.pickRandomId(_this.projects);
+        }, 5000), 5000);
     },
 
     methods: {
