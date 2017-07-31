@@ -81,7 +81,6 @@ export default {
     border-bottom: 0.24rem solid #353535;
     padding-bottom: 0.4rem;
     pointer-events: none;
-    color: red;
 }
 
 .today-line {
