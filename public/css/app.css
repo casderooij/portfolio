@@ -87,6 +87,11 @@ a {
   .project-description-paragraph {
     padding: 0rem;
   }
+
+  .project-description p {
+    font-size: 1.8rem;
+    line-height: 2.4rem;
+  }
 }
 
 .index-menu {
