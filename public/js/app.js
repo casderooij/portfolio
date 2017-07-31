@@ -2418,7 +2418,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.time-lines-container {\n}\n.line-text {\n    font-size: 1.6rem;\n    font-weight: bold;\n    position: absolute;\n    border-bottom: 0.24rem solid #353535;\n    padding-bottom: 0.4rem;\n    pointer-events: none;\n}\n.today-line {\n    right: 0rem;\n    top: -2.9rem;\n    text-align: right;\n    padding: 0.4rem 0;\n    margin: 0 -4rem;\n}\n.year {\n    z-index: 200;\n    width: 44rem;\n    margin: 0 -4rem 4rem -4rem;\n}\n", ""]);
+exports.push([module.i, "\n.time-lines-container {\n}\n.line-text {\n    font-size: 1.6rem;\n    font-weight: bold;\n    position: absolute;\n    border-bottom: 0.24rem solid #353535;\n    padding-bottom: 0.4rem;\n    pointer-events: none;\n    color: red;\n}\n.today-line {\n    right: 0rem;\n    top: -2.9rem;\n    text-align: right;\n    padding: 0.4rem 0;\n    margin: 0 -4rem;\n}\n.year {\n    z-index: 200;\n    width: 44rem;\n    margin: 0 -4rem 4rem -4rem;\n}\n", ""]);
 
 // exports
 
