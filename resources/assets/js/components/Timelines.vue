@@ -10,7 +10,7 @@
             v-bind:style="{
                 top: year.daysPassed * space / 8 + 'rem'
             }">
-                {{ year.name }}
+            {{ year.name }}
             </div>
 
         </div>
@@ -80,6 +80,7 @@ export default {
     position: absolute;
     border-bottom: 0.24rem solid #353535;
     padding-bottom: 0.4rem;
+    pointer-events: none;
 }
 
 .today-line {
