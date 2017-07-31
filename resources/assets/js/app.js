@@ -10,6 +10,8 @@ Vue.config.devtools = false;
 Vue.config.debug = false;
 Vue.config.silent = true;
 
+export var bus = new Vue();
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -22,6 +24,7 @@ Vue.component('project', require('./components/Project.vue'));
 Vue.component('project-add-form', require('./components/ProjectAddForm.vue'));
 Vue.component('project-edit-form', require('./components/ProjectEditForm.vue'));
 Vue.component('about-block', require('./components/AboutBlock.vue'));
+Vue.component('timeline-slider', require('./components/TimelineSlider.vue'));
 
 const app = new Vue({
     el: '#app'

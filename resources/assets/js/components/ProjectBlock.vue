@@ -4,7 +4,7 @@
                     left: project.block_position.block_left / 8 + 'rem',
                     backgroundColor: project.block_position.bg_color,
                     height: project.days * space / 8 + 'rem',
-                    top: project.diffInDays * space / 8 + 'rem',
+                    top: project.diffInDays * space / sliderval + 'rem',
                     zIndex: project.block_position.block_z_index
                 }"
                 v-bind:class="'timeline-col-' + project.block_position.block_col"
@@ -18,6 +18,7 @@
 
 <script>
     import axios from 'axios';
+    import { bus } from '../app.js';
 
     export default {
         props: ['source'],
@@ -26,7 +27,8 @@
                 space: 2.6,
                 projects: '',
                 today: (new Date()).toLocaleDateString(),
-                randomId: ''
+                randomId: '',
+                sliderval: 8
             }
         },
         mounted() {
@@ -45,6 +47,10 @@
             setInterval(() => {
                 this.pickRandomId(this.projects);
             }, 5000);
+
+            bus.$on('SliderData', sliderval => {
+                this.sliderval = sliderval;
+            });
         },
         methods: {
             daysPassed: function(project) {

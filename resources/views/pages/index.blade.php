@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+    <timeline-slider></timeline-slider>
+    
     <div class="tags-container">
         <p class="tag-toggle" onclick="toggleFilter()">Filter</p>
         <div id="all-tags-container" class="all-tags-container">

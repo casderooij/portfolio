@@ -8,7 +8,7 @@
 
             <div v-for="year in years" class="year line-text"
             v-bind:style="{
-                top: year.daysPassed * space / 8 + 'rem'
+                top: year.daysPassed * space / sliderval + 'rem'
             }">
             {{ year.name }}
             </div>
@@ -18,12 +18,15 @@
 </template>
 
 <script>
+import { bus } from '../app.js';
+
 export default {
     data: function() {
         return {
             space: 2.6,
             today: (new Date()).toDateString(),
-            years: ''
+            years: '',
+            sliderval: 8
         }
     },
     mounted() {
@@ -31,6 +34,10 @@ export default {
         this.sixteen = this.daysPassed('2016-01-01');
 
         this.YearCalc();
+
+        bus.$on('SliderData', sliderval => {
+            this.sliderval = sliderval;
+        });
     },
     methods: {
         daysPassed: function(year) {

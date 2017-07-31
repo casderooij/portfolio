@@ -1935,6 +1935,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__("./node_modules/axios/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_js__ = __webpack_require__("./resources/assets/js/app.js");
 //
 //
 //
@@ -1953,6 +1954,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
@@ -1963,7 +1965,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             space: 2.6,
             projects: '',
             today: new Date().toLocaleDateString(),
-            randomId: ''
+            randomId: '',
+            sliderval: 8
         };
     },
     mounted: function mounted() {
@@ -1984,6 +1987,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         setInterval(function () {
             _this.pickRandomId(_this.projects);
         }, 5000);
+
+        __WEBPACK_IMPORTED_MODULE_1__app_js__["bus"].$on('SliderData', function (sliderval) {
+            _this.sliderval = sliderval;
+        });
     },
 
     methods: {
@@ -2256,11 +2263,54 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/TimelineSlider.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_js__ = __webpack_require__("./resources/assets/js/app.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    data: function data() {
+        return {
+            sliderval: 8
+        };
+    },
+    watch: {
+        sliderval: function sliderval(val) {
+            this.getSliderValue();
+        }
+    },
+    methods: {
+        getSliderValue: function getSliderValue() {
+            console.log(this.sliderval);
+            __WEBPACK_IMPORTED_MODULE_0__app_js__["bus"].$emit('SliderData', this.sliderval);
+        }
+    }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Timelines.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_js__ = __webpack_require__("./resources/assets/js/app.js");
 //
 //
 //
@@ -2280,20 +2330,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             space: 2.6,
             today: new Date().toDateString(),
-            years: ''
+            years: '',
+            sliderval: 8
         };
     },
     mounted: function mounted() {
+        var _this = this;
+
         this.seventeen = this.daysPassed('2017-01-01');
         this.sixteen = this.daysPassed('2016-01-01');
 
         this.YearCalc();
+
+        __WEBPACK_IMPORTED_MODULE_0__app_js__["bus"].$on('SliderData', function (sliderval) {
+            _this.sliderval = sliderval;
+        });
     },
 
     methods: {
@@ -2344,6 +2403,21 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 // module
 exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-343a4c6e\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/TimelineSlider.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.container[data-v-343a4c6e] {\n    /*background-color: lightgreen;*/\n}\n.slider-title[data-v-343a4c6e] {\n    text-align: center;\n}\n.line-text[data-v-343a4c6e] {\n    position: relative;\n    border: 0;\n    padding: 0 2rem 1rem 2rem;\n}\n.input-container[data-v-343a4c6e] {\n    width: 80%;\n    margin: 0 auto;\n    padding: 0.83rem 0.1rem 0 0;\n    /*border-left: 0.24rem solid black;\n    border-right: 0.24rem solid black;*/\n    display: flex;\n}\ninput[type=range][data-v-343a4c6e] {\n  /*height: 0.24rem;*/\n  -webkit-appearance: none;\n  /*margin: 10px 0;*/\n  width: 100%;\n  margin: 1.58rem auto;\n}\ninput[type=range][data-v-343a4c6e]:focus {\n  outline: none;\n}\ninput[type=range][data-v-343a4c6e]::-webkit-slider-runnable-track {\n  width: 80%;\n  /*height: 0.24rem;*/\n  cursor: pointer;\n  animate: 0.2s;\n  background: #fff;\n  /*border-radius: 1px;*/\n  /*border: 0.24rem solid #000;*/\n}\ninput[type=range][data-v-343a4c6e]::-webkit-slider-thumb {\n  border: 0.24rem solid #353535;\n  height: 3.16rem;\n  width: 3.16rem;\n  border-radius: 50%;\n  background: #FFFFFF;\n  cursor: pointer;\n  -webkit-appearance: none;\n  margin-top: -0.66rem;\n}\ninput[type=range][data-v-343a4c6e]:focus::-webkit-slider-runnable-track {\n  background: #fff;\n}\n\n/* Mozilla */\ninput[type=range][data-v-343a4c6e]::-moz-range-track {\n  width: 80%;\n  /*height: 11px;*/\n  cursor: pointer;\n  animate: 0.2s;\n  background: #fff;\n  /*border-radius: 1px;*/\n  /*border: 0px solid #010101;*/\n}\ninput[type=range][data-v-343a4c6e]::-moz-range-thumb {\n  border: 0.24rem solid #353535;\n  height: 3.16rem;\n  width: 3.16rem;\n  border-radius: 50%;\n  background: #FFFFFF;\n  cursor: pointer;\n}\ninput[type=range][data-v-343a4c6e]:focus::-moz-focus-outer {\n    border: 0;\n}\n\n/* Microsoft */\ninput[type=range][data-v-343a4c6e]::-ms-track {\n  width: 80%;\n  /*height: 11px;*/\n  cursor: pointer;\n  animate: 0.2s;\n  background: transparent;\n  /*border-color: transparent;*/\n  color: transparent;\n}\ninput[type=range][data-v-343a4c6e]::-ms-fill-lower {\n  background: #fff;\n  /*border: 0px solid #010101;*/\n  /*border-radius: 2px;*/\n}\ninput[type=range][data-v-343a4c6e]::-ms-fill-upper {\n  background: #fff;\n  /*border: 0px solid #010101;*/\n  /*border-radius: 2px;*/\n}\ninput[type=range][data-v-343a4c6e]::-ms-thumb {\n  margin-top: 0.1rem;\n  border: 0.24rem solid #353535;\n  height: 3.16rem;\n  width: 3.16rem;\n  border-radius: 50%;\n  background: #FFFFFF;\n  cursor: pointer;\n}\ninput[type=range][data-v-343a4c6e]:focus::-ms-fill-lower {\n  background: #fff;\n}\ninput[type=range][data-v-343a4c6e]:focus::-ms-fill-upper {\n  background: #fff;\n}\n\n", ""]);
 
 // exports
 
@@ -2838,6 +2912,60 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-256a195d", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-343a4c6e\"}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/TimelineSlider.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "container"
+  }, [_c('p', {
+    staticClass: "line-text slider-title"
+  }, [_vm._v("Adjust size of timeline:")]), _vm._v(" "), _c('div', {
+    staticClass: "input-container"
+  }, [_c('p', {
+    staticClass: "line-text"
+  }, [_vm._v("big")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model.number",
+      value: (_vm.sliderval),
+      expression: "sliderval",
+      modifiers: {
+        "number": true
+      }
+    }],
+    attrs: {
+      "type": "range",
+      "id": "timeline-range",
+      "min": "2",
+      "max": "28",
+      "step": "0.1"
+    },
+    domProps: {
+      "value": (_vm.sliderval)
+    },
+    on: {
+      "__r": function($event) {
+        _vm.sliderval = _vm._n($event.target.value)
+      },
+      "blur": function($event) {
+        _vm.$forceUpdate()
+      }
+    }
+  }), _vm._v(" "), _c('p', {
+    staticClass: "line-text"
+  }, [_vm._v("small")])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-343a4c6e", module.exports)
   }
 }
 
@@ -3406,7 +3534,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         left: project.block_position.block_left / 8 + 'rem',
         backgroundColor: project.block_position.bg_color,
         height: project.days * _vm.space / 8 + 'rem',
-        top: project.diffInDays * _vm.space / 8 + 'rem',
+        top: project.diffInDays * _vm.space / _vm.sliderval + 'rem',
         zIndex: project.block_position.block_z_index
       }),
       attrs: {
@@ -4063,7 +4191,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('div', {
       staticClass: "year line-text",
       style: ({
-        top: year.daysPassed * _vm.space / 8 + 'rem'
+        top: year.daysPassed * _vm.space / _vm.sliderval + 'rem'
       })
     }, [_vm._v("\n        " + _vm._s(year.name) + "\n        ")])
   })], 2)])
@@ -4095,6 +4223,33 @@ if(false) {
  if(!content.locals) {
    module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-256a195d\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Project.vue", function() {
      var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-256a195d\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Project.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-343a4c6e\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/TimelineSlider.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-343a4c6e\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/TimelineSlider.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("48c869a8", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-343a4c6e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TimelineSlider.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-343a4c6e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TimelineSlider.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -14225,8 +14380,11 @@ module.exports = g;
 /***/ }),
 
 /***/ "./resources/assets/js/app.js":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bus", function() { return bus; });
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -14238,6 +14396,8 @@ window.Vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 Vue.config.devtools = false;
 Vue.config.debug = false;
 Vue.config.silent = true;
+
+var bus = new Vue();
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -14251,6 +14411,7 @@ Vue.component('project', __webpack_require__("./resources/assets/js/components/P
 Vue.component('project-add-form', __webpack_require__("./resources/assets/js/components/ProjectAddForm.vue"));
 Vue.component('project-edit-form', __webpack_require__("./resources/assets/js/components/ProjectEditForm.vue"));
 Vue.component('about-block', __webpack_require__("./resources/assets/js/components/AboutBlock.vue"));
+Vue.component('timeline-slider', __webpack_require__("./resources/assets/js/components/TimelineSlider.vue"));
 
 var app = new Vue({
   el: '#app'
@@ -14472,6 +14633,51 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-3c950b6b", Component.options)
   } else {
     hotAPI.reload("data-v-3c950b6b", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/TimelineSlider.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-343a4c6e\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/TimelineSlider.vue")
+}
+var Component = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")(
+  /* script */
+  __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/TimelineSlider.vue"),
+  /* template */
+  __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-343a4c6e\"}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/TimelineSlider.vue"),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-343a4c6e",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/Users/cas/Documents/www/projects/portfolio/casderooij-portfolio/resources/assets/js/components/TimelineSlider.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] TimelineSlider.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-343a4c6e", Component.options)
+  } else {
+    hotAPI.reload("data-v-343a4c6e", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
