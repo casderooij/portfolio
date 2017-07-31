@@ -3533,7 +3533,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       style: ({
         left: project.block_position.block_left / 8 + 'rem',
         backgroundColor: project.block_position.bg_color,
-        height: project.days * _vm.space / 8 + 'rem',
+        height: project.days * _vm.space / _vm.sliderval + 'rem',
         top: project.diffInDays * _vm.space / _vm.sliderval + 'rem',
         zIndex: project.block_position.block_z_index
       }),

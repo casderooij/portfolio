@@ -3,7 +3,7 @@
             <a class="project-container col" v-for="(project, index) in projects" v-bind:style="{
                     left: project.block_position.block_left / 8 + 'rem',
                     backgroundColor: project.block_position.bg_color,
-                    height: project.days * space / 8 + 'rem',
+                    height: project.days * space / sliderval + 'rem',
                     top: project.diffInDays * space / sliderval + 'rem',
                     zIndex: project.block_position.block_z_index
                 }"
