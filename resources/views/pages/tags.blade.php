@@ -2,13 +2,13 @@
 
 @section('content')
     <timeline-slider></timeline-slider>
-    
+
     <div class="tags-container">
         <p class="tag-toggle">Filter</p>
         <a href="/">all</a>
         @foreach($tags as $tag)
             @if($tag->id == $tag_id)
-                <a href="/tags/{{ $tag->id }}" style="border-bottom: 0.24rem solid black">{{ $tag->name }}</a>
+                <a href="/tags/{{ $tag->id }}" style="color: #353535;font-weight:bold;">{{ $tag->name }}</a>
             @else
                 <a href="/tags/{{ $tag->id }}">{{ $tag->name }}</a>
             @endif
