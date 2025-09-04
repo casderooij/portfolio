@@ -9,7 +9,7 @@ interface ProjectsSphereWrapperProps {
 
 export function ProjectsSphereWrapper({ media }: ProjectsSphereWrapperProps) {
   return (
-    <div className="relative">
+    <div className="relative h-screen w-screen">
       <ProjectsSphereProvider>
         <ProjectsSphereScene media={media} />
         <ProjectsSphereInfo />

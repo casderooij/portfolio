@@ -102,11 +102,61 @@ const media: ProjectItem[] = [
   <body class="bg-bg">
     <header class="relative">
       <ProjectsSphereWrapper client:only="react" media={media} />
-      <h1 class="text-purple absolute top-4 left-4 text-6xl uppercase">
+      <h1
+        class="text-purple absolute top-4 left-4 text-4xl uppercase md:text-6xl"
+      >
         —— creative <br />web developer
       </h1>
+      <button
+        id="scroll-down-button"
+        class="text-purple absolute bottom-4 left-1/2 -translate-x-1/2 rounded bg-white px-2 text-lg md:hidden"
+        >scroll down</button
+      >
     </header>
 
-    <main></main>
+    <main id="main-content" class="my-32 p-4">
+      <section class="flex flex-col items-center">
+        <div class="max-w-[40rem] text-lg">
+          <p class="text-gray-600">
+            I am Cas, a web developer since 2018, with a design background that
+            enables me to solve complex problems by merging technology and
+            creativity. I'm passionate about using the web as an accessible
+            canvas for interaction, storytelling, and creativity. After studying
+            interaction design, I've developed my skills in web technologies to
+            transform concepts into reality. I thrive at the intersection of
+            user experience, design, and technology, aiming for solutions that
+            are both functional and effective. I enjoy crafting prototypes and
+            sketches, and love experimenting with user interactions during
+            implementation.
+          </p>
+          <div class="text-purple mt-2 flex gap-4 underline">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://github.com/casderooij">Github</a
+            >
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://bsky.app/profile/casderooij.nl">Bluesky</a
+            >
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.linkedin.com/in/cas-de-rooij-86374861/"
+              >LinkedIn</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const scrollDownButton = document.getElementById('scroll-down-button')
+      const mainContent = document.getElementById('main-content')
+      scrollDownButton?.addEventListener('click', () => {
+        mainContent?.scrollIntoView({ behavior: 'smooth' })
+      })
+    </script>
   </body>
 </html>

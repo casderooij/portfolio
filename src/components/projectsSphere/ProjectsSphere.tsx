@@ -8,9 +8,14 @@ import { useProjectsSphereContext } from './ProjectsSphereProvider'
 interface ProjectsSphereProps {
   radius?: number
   media: ProjectItem[]
+  yScale?: number
 }
 
-export function ProjectsSphere({ radius = 4.5, media }: ProjectsSphereProps) {
+export function ProjectsSphere({
+  radius = 4,
+  media,
+  yScale = 1,
+}: ProjectsSphereProps) {
   const ref = useRef<THREE.Group | null>(null)
   const [active, setActive] = useState(null)
 
@@ -21,7 +26,8 @@ export function ProjectsSphere({ radius = 4.5, media }: ProjectsSphereProps) {
     const points = []
     const phi = Math.PI * (3 - Math.sqrt(5)) // golden angle in radians
     for (let i = 0; i < count; i++) {
-      const y = 1 - (i / (count - 1)) * 2 // y goes from 1 to -1
+      let y = 1 - (i / (count - 1)) * 2 // y goes from 1 to -1
+      y *= yScale
       const r = Math.sqrt(1 - y * y) // radius at y
       const theta = phi * i // golden angle increment
       const x = Math.cos(theta) * r
@@ -29,7 +35,7 @@ export function ProjectsSphere({ radius = 4.5, media }: ProjectsSphereProps) {
       points.push(new THREE.Vector3(x, y, z).multiplyScalar(radius))
     }
     return points
-  }, [count, radius])
+  }, [count, radius, yScale])
 
   useFrame((state) => {
     let selectedChild = null
