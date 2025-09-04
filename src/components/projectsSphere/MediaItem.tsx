@@ -1,8 +1,8 @@
-import { type Vector3 } from 'three'
 import { animated as animatedThree, useSpring } from '@react-spring/three'
-import { Billboard, Image } from '@react-three/drei'
-import { VideoMaterial } from './VideoMaterial'
+import { Billboard } from '@react-three/drei'
+import { type Vector3 } from 'three'
 import type { ProjectItem } from './ProjectsSphereScene'
+import { VideoMaterial } from './VideoMaterial'
 
 interface MediaItemProps {
   id: string
@@ -24,14 +24,10 @@ export function MediaItem({ id, item, inView, position }: MediaItemProps) {
       userData={{ id, item }}
     >
       <Billboard>
-        {item.type === 'video' ? (
-          <mesh>
-            <planeGeometry args={[1, 1]} />
-            <VideoMaterial url={`${item.url}`} inView={inView} />
-          </mesh>
-        ) : (
-          <Image url={item.url} scale={[1, 1]} transparent />
-        )}
+        <mesh>
+          <planeGeometry args={[1, 1]} />
+          <VideoMaterial url={`${item.url}`} inView={inView} />
+        </mesh>
       </Billboard>
     </animatedThree.group>
   )

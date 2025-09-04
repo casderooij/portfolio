@@ -5,7 +5,6 @@ import { useSpring, animated } from '@react-spring/web'
 import { ProjectsSphere } from './ProjectsSphere'
 
 export type ProjectItem = {
-  type: 'video' | 'image'
   url: string
 }
 
