@@ -24,8 +24,7 @@ export default function ProjectsSphereScene({
   media,
 }: ProjectsSphereSceneProps) {
   const { progress } = useProgress()
-  const [radius, setRadius] = useState(DESKTOP_RADIUS)
-  const [yScale, setYScale] = useState(DESKTOP_Y_SCALE)
+  const [isSmallScreen, setIsSmallScreen] = useState(true)
 
   const { opacity } = useSpring({
     opacity: progress === 100 ? 1 : 0,
@@ -36,11 +35,9 @@ export default function ProjectsSphereScene({
     const mediaQuery = window.matchMedia('(max-width: 768px)')
     const listener = () => {
       if (mediaQuery.matches) {
-        setRadius(MOBILE_RADIUS)
-        setYScale(MOBILE_Y_SCALE)
+        setIsSmallScreen(true)
       } else {
-        setRadius(DESKTOP_RADIUS)
-        setYScale(DESKTOP_Y_SCALE)
+        setIsSmallScreen(false)
       }
     }
     listener()
@@ -58,8 +55,11 @@ export default function ProjectsSphereScene({
         style={{ height: '100vh' }}
       >
         <fog attach="fog" args={['#f0f0f0', 4, 10]} />
-        <ProjectsSphere media={media} radius={radius} yScale={yScale} />
-        <TrackballControls noZoom rotateSpeed={2} />
+        <ProjectsSphere
+          media={media}
+          radius={isSmallScreen ? MOBILE_RADIUS : DESKTOP_RADIUS}
+        />
+        <TrackballControls noZoom rotateSpeed={isSmallScreen ? 1 : 2} />
       </Canvas>
     </animated.div>
   )
