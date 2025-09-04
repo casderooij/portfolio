@@ -21,5 +21,5 @@ export function VideoMaterial({ url, inView }: VideoMaterialProps) {
     }
   }, [inView, texture])
 
-  return <meshBasicMaterial map={texture} toneMapped={false} />
+  return <meshBasicMaterial color="0xf0f0f0" map={texture} toneMapped={false} />
 }
