@@ -3,6 +3,7 @@ import { useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { MediaItem } from './MediaItem'
 import { type ProjectItem } from './ProjectsSphereScene'
+import { useProjectsSphereContext } from './ProjectsSphereProvider'
 
 interface SphereProps {
   radius?: number
@@ -14,7 +15,7 @@ export function Sphere({ radius = 4, media }: SphereProps) {
   const [active, setActive] = useState(null)
 
   const count = media.length
-  // const setInfo = useSceneStoreContext((state) => state.setInfo);
+  const setInfo = useProjectsSphereContext((state) => state.setInfo)
 
   const positions = useMemo(() => {
     const points = []
@@ -45,7 +46,7 @@ export function Sphere({ radius = 4, media }: SphereProps) {
     }
     setActive(selectedChild?.userData.id)
     if (selectedChild) {
-      // setInfo(selectedChild.userData.item.url)
+      setInfo(selectedChild.userData.item.url)
     }
   })
 

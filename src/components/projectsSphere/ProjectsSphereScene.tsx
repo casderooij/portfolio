@@ -3,7 +3,6 @@ import { Canvas } from '@react-three/fiber'
 import { TrackballControls, useProgress } from '@react-three/drei'
 import { useSpring, animated } from '@react-spring/web'
 import { Sphere } from './Sphere'
-// import { useSceneStoreContext } from './SceneProvider';
 
 export type ProjectItem = {
   type: 'video' | 'image'

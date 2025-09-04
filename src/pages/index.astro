@@ -1,8 +1,7 @@
 ---
 import '../global.css'
-import ProjectsSphereScene, {
-  type ProjectItem,
-} from '../components/projectsSphere/ProjectsSphereScene'
+import { type ProjectItem } from '../components/projectsSphere/ProjectsSphereScene'
+import { ProjectsSphereWrapper } from '../components/projectsSphere/ProjectsSphereWrapper'
 
 const media: ProjectItem[] = [
   {
@@ -53,8 +52,12 @@ const media: ProjectItem[] = [
     <meta name="generator" content={Astro.generator} />
     <title>Astro</title>
   </head>
-  <body
-    ><h1 class="text-red-400">Astro</h1>
-    <ProjectsSphereScene client:only="react" media={media} />
+  <body>
+    <header class="relative">
+      <ProjectsSphereWrapper client:only="react" media={media} />
+      <h1 class="absolute top-4 left-4 text-6xl text-blue-600 uppercase">
+        —— creative <br />web developer
+      </h1>
+    </header>
   </body>
 </html>
