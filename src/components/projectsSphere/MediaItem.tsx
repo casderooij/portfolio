@@ -26,7 +26,7 @@ export function MediaItem({ id, item, inView, position }: MediaItemProps) {
       <Billboard>
         {item.type === 'video' ? (
           <mesh>
-            <planeGeometry args={[1, 1]} />
+            <planeGeometry args={[item.aspect, 1]} />
             <VideoMaterial url={`${item.url}#${id}`} inView={inView} />
           </mesh>
         ) : (
