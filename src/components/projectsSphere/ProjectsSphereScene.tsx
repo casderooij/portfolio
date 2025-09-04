@@ -6,6 +6,7 @@ import { ProjectsSphere } from './ProjectsSphere'
 
 export type ProjectItem = {
   url: string
+  type: 'video' | 'image'
 }
 
 interface ProjectsSphereSceneProps {
@@ -28,11 +29,9 @@ export default function ProjectsSphereScene({
         style={{ height: '100vh', backgroundColor: '#f0f0f0' }}
       >
         <fog attach="fog" args={['#f0f0f0', 7, 10]} />
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} intensity={1} />
-        <Suspense fallback={null}>
-          <ProjectsSphere media={media} />
-        </Suspense>
+        {/* <Suspense fallback={null}> */}
+        <ProjectsSphere media={media} />
+        {/* </Suspense> */}
         <TrackballControls noZoom rotateSpeed={2} />
       </Canvas>
     </animated.div>

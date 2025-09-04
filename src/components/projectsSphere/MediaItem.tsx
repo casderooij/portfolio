@@ -1,5 +1,5 @@
 import { animated as animatedThree, useSpring } from '@react-spring/three'
-import { Billboard } from '@react-three/drei'
+import { Billboard, Image } from '@react-three/drei'
 import { type Vector3 } from 'three'
 import type { ProjectItem } from './ProjectsSphereScene'
 import { VideoMaterial } from './VideoMaterial'
@@ -24,10 +24,14 @@ export function MediaItem({ id, item, inView, position }: MediaItemProps) {
       userData={{ id, item }}
     >
       <Billboard>
-        <mesh>
-          <planeGeometry args={[1, 1]} />
-          <VideoMaterial url={`${item.url}`} inView={inView} />
-        </mesh>
+        {item.type === 'video' ? (
+          <mesh>
+            <planeGeometry args={[1, 1]} />
+            <VideoMaterial url={`${item.url}#${id}`} inView={inView} />
+          </mesh>
+        ) : (
+          <Image url={item.url} scale={[0, 0]} transparent />
+        )}
       </Billboard>
     </animatedThree.group>
   )

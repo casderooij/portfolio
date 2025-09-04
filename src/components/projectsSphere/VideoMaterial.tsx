@@ -7,9 +7,10 @@ interface VideoMaterialProps {
 }
 
 export function VideoMaterial({ url, inView }: VideoMaterialProps) {
-  const texture = useVideoTexture('/one-minute-capture.mp4', {
+  const texture = useVideoTexture(url, {
     loop: true,
     muted: true,
+    crossOrigin: 'Anonymous',
   })
 
   useEffect(() => {
