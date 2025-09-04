@@ -30,7 +30,16 @@ export function MediaItem({ id, item, inView, position }: MediaItemProps) {
             <VideoMaterial url={`${item.url}#${id}`} inView={inView} />
           </mesh>
         ) : (
-          <Image url={item.url} scale={[0, 0]} transparent />
+          <>
+            <Image url={item.url} scale={[0, 0]} transparent />
+            <mesh>
+              <planeGeometry args={[0.82, 1]} />
+              <VideoMaterial
+                url={`/one-minute-capture.mp4#${id}`}
+                inView={inView}
+              />
+            </mesh>
+          </>
         )}
       </Billboard>
     </animatedThree.group>

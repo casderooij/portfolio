@@ -7,6 +7,7 @@ export type ProjectItem = {
   url: string
   type: 'video' | 'image'
   aspect: number
+  title: string
 }
 
 interface ProjectsSphereSceneProps {
@@ -25,8 +26,9 @@ export default function ProjectsSphereScene({
   return (
     <animated.div style={{ opacity }} className="h-full">
       <Canvas
+        className="bg-bg"
         camera={{ position: [0, 0, 7], fov: 75 }}
-        style={{ height: '100vh', backgroundColor: '#f0f0f0' }}
+        style={{ height: '100vh' }}
       >
         <fog attach="fog" args={['#f0f0f0', 4, 10]} />
         <ProjectsSphere media={media} />

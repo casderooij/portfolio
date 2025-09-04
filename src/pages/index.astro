@@ -8,72 +8,85 @@ const media: ProjectItem[] = [
     type: 'video',
     url: '/project-sphere-media/diffusion.mp4',
     aspect: 1,
+    title: 'Diffusion algorithm',
   },
   {
     type: 'video',
     url: '/project-sphere-media/falling-words.mp4',
     aspect: 1.75,
+    title: 'Falling words',
   },
   {
     type: 'video',
     url: '/project-sphere-media/green-hills.mp4',
     aspect: 1,
+    title: 'Green hills',
   },
   {
     type: 'video',
     url: '/project-sphere-media/grid.mp4',
     aspect: 1,
+    title: 'Pattern generator',
   },
   {
     type: 'video',
     url: '/project-sphere-media/idomeneo.mp4',
     aspect: 1.77,
+    title: 'Idomeneo digital poster',
   },
   {
     type: 'video',
     url: '/project-sphere-media/marching-squares-lowres.mp4',
     aspect: 1,
+    title: 'Marching squares lowres',
   },
   {
     type: 'video',
     url: '/project-sphere-media/marching-squares.mp4',
     aspect: 1,
+    title: 'Marching squares',
   },
   {
     type: 'video',
     url: '/project-sphere-media/noise-gallery.mp4',
     aspect: 1,
+    title: 'Noise gallery',
   },
   {
     type: 'video',
     url: '/project-sphere-media/number-grid.mp4',
     aspect: 1,
+    title: 'Number grid',
   },
   {
     type: 'video',
     url: '/project-sphere-media/organic-chart.mp4',
     aspect: 1,
+    title: 'Organic chart',
   },
   {
     type: 'video',
     url: '/project-sphere-media/sliding-ui.mp4',
     aspect: 1,
+    title: 'Sliding UI',
   },
   {
     type: 'video',
     url: '/project-sphere-media/synthetic-wander.mp4',
     aspect: 1.7,
+    title: 'Synthetic wander',
   },
   {
     type: 'video',
     url: '/project-sphere-media/window.mp4',
     aspect: 1,
+    title: 'CSS window',
   },
-
   {
     type: 'image',
     url: 'https://placehold.co/10',
     aspect: 1,
+    title: 'One minute capture',
   },
 ]
 ---
@@ -86,12 +99,14 @@ const media: ProjectItem[] = [
     <meta name="generator" content={Astro.generator} />
     <title>Cas de Rooij - creative web developer</title>
   </head>
-  <body>
+  <body class="bg-bg">
     <header class="relative">
       <ProjectsSphereWrapper client:only="react" media={media} />
       <h1 class="text-purple absolute top-4 left-4 text-6xl uppercase">
         —— creative <br />web developer
       </h1>
     </header>
+
+    <main></main>
   </body>
 </html>

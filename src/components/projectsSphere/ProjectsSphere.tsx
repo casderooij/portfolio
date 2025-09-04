@@ -10,7 +10,7 @@ interface ProjectsSphereProps {
   media: ProjectItem[]
 }
 
-export function ProjectsSphere({ radius = 4, media }: ProjectsSphereProps) {
+export function ProjectsSphere({ radius = 4.5, media }: ProjectsSphereProps) {
   const ref = useRef<THREE.Group | null>(null)
   const [active, setActive] = useState(null)
 
@@ -46,7 +46,7 @@ export function ProjectsSphere({ radius = 4, media }: ProjectsSphereProps) {
     }
     setActive(selectedChild?.userData.id)
     if (selectedChild) {
-      setInfo(selectedChild.userData.item.url)
+      setInfo(selectedChild.userData.item.title)
     }
   })
 
