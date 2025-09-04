@@ -51,7 +51,7 @@ export function ProjectsSphere({ radius = 4, media }: ProjectsSphereProps) {
   })
 
   return (
-    <group ref={ref} rotation={[-0.4, 0.2, 0]}>
+    <group ref={ref} rotation={[0, -2, 0]}>
       {positions.map((pos, i) => {
         const mediaItem = media[i % media.length]
         const id = `item-${i}`

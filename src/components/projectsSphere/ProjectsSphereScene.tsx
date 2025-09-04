@@ -1,7 +1,6 @@
-import { Suspense } from 'react'
-import { Canvas } from '@react-three/fiber'
+import { animated, useSpring } from '@react-spring/web'
 import { TrackballControls, useProgress } from '@react-three/drei'
-import { useSpring, animated } from '@react-spring/web'
+import { Canvas } from '@react-three/fiber'
 import { ProjectsSphere } from './ProjectsSphere'
 
 export type ProjectItem = {
@@ -20,7 +19,7 @@ export default function ProjectsSphereScene({
   const { progress } = useProgress()
   const { opacity } = useSpring({
     opacity: progress === 100 ? 1 : 0,
-    config: { duration: 2000 },
+    config: { duration: 1000 },
   })
 
   return (
@@ -29,10 +28,8 @@ export default function ProjectsSphereScene({
         camera={{ position: [0, 0, 7], fov: 75 }}
         style={{ height: '100vh', backgroundColor: '#f0f0f0' }}
       >
-        <fog attach="fog" args={['#f0f0f0', 7, 10]} />
-        <Suspense>
-          <ProjectsSphere media={media} />
-        </Suspense>
+        <fog attach="fog" args={['#f0f0f0', 4, 10]} />
+        <ProjectsSphere media={media} />
         <TrackballControls noZoom rotateSpeed={2} />
       </Canvas>
     </animated.div>
