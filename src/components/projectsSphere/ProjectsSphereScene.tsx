@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { TrackballControls, useProgress } from '@react-three/drei'
 import { useSpring, animated } from '@react-spring/web'
-import { Sphere } from './Sphere'
+import { ProjectsSphere } from './ProjectsSphere'
 
 export type ProjectItem = {
   type: 'video' | 'image'
@@ -32,7 +32,7 @@ export default function ProjectsSphereScene({
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} />
         <Suspense fallback={null}>
-          <Sphere media={media} />
+          <ProjectsSphere media={media} />
         </Suspense>
         <TrackballControls noZoom rotateSpeed={2} />
       </Canvas>

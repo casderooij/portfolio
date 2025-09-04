@@ -5,12 +5,12 @@ import { MediaItem } from './MediaItem'
 import { type ProjectItem } from './ProjectsSphereScene'
 import { useProjectsSphereContext } from './ProjectsSphereProvider'
 
-interface SphereProps {
+interface ProjectsSphereProps {
   radius?: number
   media: ProjectItem[]
 }
 
-export function Sphere({ radius = 4, media }: SphereProps) {
+export function ProjectsSphere({ radius = 4, media }: ProjectsSphereProps) {
   const ref = useRef<THREE.Group | null>(null)
   const [active, setActive] = useState(null)
 
