@@ -30,7 +30,9 @@ export default function ProjectsSphereScene({
         style={{ height: '100vh', backgroundColor: '#f0f0f0' }}
       >
         <fog attach="fog" args={['#f0f0f0', 7, 10]} />
-        <ProjectsSphere media={media} />
+        <Suspense>
+          <ProjectsSphere media={media} />
+        </Suspense>
         <TrackballControls noZoom rotateSpeed={2} />
       </Canvas>
     </animated.div>
