@@ -17,7 +17,7 @@ interface ProjectsSphereSceneProps {
 
 const DESKTOP_RADIUS = 4
 const DESKTOP_Y_SCALE = 1
-const MOBILE_RADIUS = 2.5
+const MOBILE_RADIUS = 3
 const MOBILE_Y_SCALE = 1
 
 export default function ProjectsSphereScene({
