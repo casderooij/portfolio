@@ -2,6 +2,7 @@
 import '../global.css'
 import { type ProjectItem } from '../components/projectsSphere/ProjectsSphereScene'
 import { ProjectsSphereWrapper } from '../components/projectsSphere/ProjectsSphereWrapper'
+import ExternalLink from '../components/ExternalLink.astro'
 
 const media: ProjectItem[] = [
   {
@@ -99,7 +100,7 @@ const media: ProjectItem[] = [
       <h1
         class="text-purple absolute top-4 left-4 text-4xl uppercase md:text-6xl"
       >
-        —— creative <br />web developer
+        creative <br />web <br />developer
       </h1>
       <button
         id="scroll-down-button"
@@ -111,7 +112,7 @@ const media: ProjectItem[] = [
     <main id="main-content" class="my-32 p-4">
       <section class="flex flex-col items-center">
         <div class="max-w-[40rem] text-lg">
-          <p class="text-gray-600">
+          <p class="font-mono leading-6 text-gray-600">
             I am Cas, a web developer since 2018, with a design background that
             enables me to solve complex problems by merging technology and
             creativity. I'm passionate about using the web as an accessible
@@ -123,22 +124,16 @@ const media: ProjectItem[] = [
             sketches, and love experimenting with user interactions during
             implementation.
           </p>
-          <div class="text-purple mt-2 flex gap-4 underline">
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://github.com/casderooij">Github</a
+          <div class="text-purple mt-5 flex gap-2 underline">
+            <ExternalLink url="https://github.com/casderooij"
+              >Github</ExternalLink
             >
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://bsky.app/profile/casderooij.nl">Bluesky</a
+            <ExternalLink url="https://bsky.app/profile/casderooij.nl"
+              >Bluesky</ExternalLink
             >
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.linkedin.com/in/cas-de-rooij-86374861/"
-              >LinkedIn</a
+            <ExternalLink
+              url="https://www.linkedin.com/in/cas-de-rooij-86374861/"
+              >LinkedIn</ExternalLink
             >
           </div>
         </div>

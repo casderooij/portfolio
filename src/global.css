@@ -1,6 +1,21 @@
 @import 'tailwindcss';
 
+@font-face {
+  font-family: 'Hedvig Sans';
+  font-display: swap;
+  src: url('/fonts/hedvig-letters-sans-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Whois Mono';
+  font-display: swap;
+  src: url('/fonts/whois-mono.woff2') format('woff2');
+}
+
 @theme {
   --color-bg: #e8e7d7;
   --color-purple: #6c2eff;
+
+  --font-sans: 'Hedvig Sans', sans-serif;
+  --font-mono: 'Whois Mono', monospace;
 }
