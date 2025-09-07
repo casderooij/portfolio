@@ -16,12 +16,12 @@ import { media } from '../mediaSphere'
   </head>
   <body class="bg-bg">
     <header class="relative h-[100dvh] w-screen">
-      <ProjectsSphereWrapper client:only="react" media={media} />
       <h1
-        class="text-purple absolute top-4 left-4 text-4xl leading-12 md:text-6xl"
+        class="text-purple pointer-events-none absolute top-0 left-0 flex p-4 text-6xl leading-12 md:text-8xl md:leading-20"
       >
         creative <br />web <br />developer
       </h1>
+      <ProjectsSphereWrapper client:only="react" media={media} />
       <ScrollDownButton />
     </header>
 
