@@ -5,7 +5,7 @@
 }
 
 .stack-container {
-  --space: 1em;
+  --space: 2em;
 
   position: relative;
 }

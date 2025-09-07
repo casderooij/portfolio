@@ -1,10 +1,37 @@
 ---
+import { Image } from 'astro:assets'
 import './stack.css'
+
+export interface Item {
+  type: 'image' | 'video'
+  src: ImageMetadata | string
+}
+
+export interface Props {
+  type: 'circle' | 'wave'
+  items: Item[]
+}
+
+const { type, items } = Astro.props
 ---
 
-<div class="stack-container w-2xl border border-black">
-  <div class="stack circle" data-index="0">
-    <slot />
+<div class="stack-container w-96">
+  <div class={`stack ${type}`} style={`--total-items: ${items.length}`}>
+    {
+      items.map((item, index) => (
+        <div
+          class="stack-item"
+          data-index={index}
+          style={`--stack-i: ${index}`}
+        >
+          {item.type === 'image' ? (
+            <Image src={item.src as ImageMetadata} alt="Stack item" />
+          ) : (
+            <video src={item.src as string} autoplay muted loop />
+          )}
+        </div>
+      ))
+    }
     <div class="indicator"></div>
   </div>
 </div>

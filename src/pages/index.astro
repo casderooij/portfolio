@@ -3,12 +3,16 @@ import { Image } from 'astro:assets'
 import ExternalLink from '../components/ExternalLink.astro'
 import { ProjectsSphereWrapper } from '../components/projectsSphere/ProjectsSphereWrapper'
 import ScrollDownButton from '../components/ScrollDownButton.astro'
-import Stack from '../components/Stack.astro'
+import Stack, { type Item } from '../components/Stack.astro'
 import '../global.css'
 
-const images = import.meta.glob('/src/projects/synthetic-wander/*.jpg', {
+const imageImports = import.meta.glob('/src/projects/synthetic-wander/*.jpg', {
   eager: true,
 })
+const items: Item[] = Object.values(imageImports).map((image: any) => ({
+  type: 'image',
+  src: image.default,
+}))
 ---
 
 <html lang="en">
@@ -60,20 +64,8 @@ const images = import.meta.glob('/src/projects/synthetic-wander/*.jpg', {
         </div>
       </section>
 
-      <section>
-        <Stack>
-          {
-            Object.values(images).map((image: any, index) => (
-              <Image
-                data-index={index}
-                class="stack-item rounded-2xl"
-                src={image.default}
-                alt="Synthetic Wander Image"
-                format="webp"
-              />
-            ))
-          }
-        </Stack>
+      <section class="grid place-content-center pt-24">
+        <Stack type="circle" items={items} />
       </section>
     </main>
   </body>
