@@ -2,7 +2,7 @@ import { createContext, useContext, useState, type ReactNode } from 'react'
 import { createStore, useStore, type StoreApi } from 'zustand'
 
 type State = {
-  info: string
+  info: string | null
   setInfo: (info: string) => void
 }
 
@@ -17,7 +17,7 @@ export default function ProjectsSphereProvider({
 }: ProjectsSphereProviderProps) {
   const [store] = useState(() =>
     createStore<State>()((set) => ({
-      info: '',
+      info: null,
       setInfo: (info) => set(() => ({ info })),
     })),
   )

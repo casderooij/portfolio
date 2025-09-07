@@ -10,12 +10,14 @@ export function ProjectsSphereInfo() {
     leave: { opacity: 0, y: 80 },
   })
 
-  return transitions((style, item) => (
+  if (!info) return null
+
+  return transitions((style, info) => (
     <animated.div
       style={style}
       className="absolute right-4 bottom-4 hidden rounded bg-white/80 px-4 py-2 text-xl text-gray-600 backdrop-blur-sm md:block"
     >
-      {item}
+      {info}
     </animated.div>
   ))
 }
