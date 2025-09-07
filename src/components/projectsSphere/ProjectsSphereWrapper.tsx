@@ -1,17 +1,12 @@
 import { ProjectsSphereInfo } from './ProjectsSphereInfo'
 import ProjectsSphereProvider from './ProjectsSphereProvider'
-import type { ProjectItem } from './ProjectsSphereScene'
 import ProjectsSphereScene from './ProjectsSphereScene'
 
-interface ProjectsSphereWrapperProps {
-  media: ProjectItem[]
-}
-
-export function ProjectsSphereWrapper({ media }: ProjectsSphereWrapperProps) {
+export function ProjectsSphereWrapper() {
   return (
     <div className="relative h-screen w-screen">
       <ProjectsSphereProvider>
-        <ProjectsSphereScene media={media} />
+        <ProjectsSphereScene />
         <ProjectsSphereInfo />
       </ProjectsSphereProvider>
     </div>

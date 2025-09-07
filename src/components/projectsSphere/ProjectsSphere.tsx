@@ -1,35 +1,27 @@
 import { useFrame } from '@react-three/fiber'
 import { useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
+import { media } from '../../mediaSphere'
 import { MediaItem } from './MediaItem'
-import { type ProjectItem } from './ProjectsSphereScene'
 import { useProjectsSphereContext } from './ProjectsSphereProvider'
+
+const PHI = Math.PI * (3 - Math.sqrt(5))
 
 interface ProjectsSphereProps {
   radius?: number
-  media: ProjectItem[]
 }
 
-export function ProjectsSphere({ radius = 4, media }: ProjectsSphereProps) {
-  const ref = useRef<THREE.Group | null>(null)
+export function ProjectsSphere({ radius = 4 }: ProjectsSphereProps) {
   const [active, setActive] = useState(null)
-
-  const count = media.length
   const setInfo = useProjectsSphereContext((state) => state.setInfo)
 
-  const positions = useMemo(() => {
-    const points = []
-    const phi = Math.PI * (3 - Math.sqrt(5))
-    for (let i = 0; i < count; i++) {
-      let y = 1 - (i / (count - 1)) * 2
-      const r = Math.sqrt(1 - y * y)
-      const theta = phi * i
-      const x = Math.cos(theta) * r
-      const z = Math.sin(theta) * r
-      points.push(new THREE.Vector3(x, y, z).multiplyScalar(radius))
-    }
-    return points
-  }, [count, radius])
+  const ref = useRef<THREE.Group | null>(null)
+  const count = media.length
+
+  const positions = useMemo(
+    () => calculateSpherePositions(count, radius),
+    [count, radius],
+  )
 
   useFrame((state) => {
     let selectedChild = null
@@ -44,8 +36,9 @@ export function ProjectsSphere({ radius = 4, media }: ProjectsSphereProps) {
         selectedChild = child
       }
     }
-    setActive(selectedChild?.userData.id)
+
     if (selectedChild) {
+      setActive(selectedChild.userData.id)
       setInfo(selectedChild.userData.item.title)
     }
   })
@@ -68,4 +61,18 @@ export function ProjectsSphere({ radius = 4, media }: ProjectsSphereProps) {
       })}
     </group>
   )
+}
+
+function calculateSpherePositions(numberOfItems: number, radius: number) {
+  const points = []
+
+  for (let i = 0; i < numberOfItems; i++) {
+    let y = 1 - (i / (numberOfItems - 1)) * 2
+    const r = Math.sqrt(1 - y * y)
+    const theta = PHI * i
+    const x = Math.cos(theta) * r
+    const z = Math.sin(theta) * r
+    points.push(new THREE.Vector3(x, y, z).multiplyScalar(radius))
+  }
+  return points
 }

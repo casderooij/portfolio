@@ -11,16 +11,10 @@ export type ProjectItem = {
   title: string
 }
 
-interface ProjectsSphereSceneProps {
-  media: ProjectItem[]
-}
-
 const DESKTOP_RADIUS = 4
 const MOBILE_RADIUS = 3
 
-export default function ProjectsSphereScene({
-  media,
-}: ProjectsSphereSceneProps) {
+export default function ProjectsSphereScene() {
   const { progress } = useProgress()
   const isSmallScreen = useMedia({
     initialValue: true,
@@ -38,8 +32,8 @@ export default function ProjectsSphereScene({
         camera={{ position: [0, 0, 7], fov: 75 }}
         style={{ height: '100vh' }}
       >
+        <fog attach="fog" args={['#e8e7d7', 4, 10]} />
         <ProjectsSphere
-          media={media}
           radius={isSmallScreen ? MOBILE_RADIUS : DESKTOP_RADIUS}
         />
         <TrackballControls noZoom rotateSpeed={isSmallScreen ? 1 : 2} />
