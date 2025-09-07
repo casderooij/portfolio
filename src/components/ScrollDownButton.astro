@@ -6,10 +6,14 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const scrollDownButton = document.getElementById('scroll-down-button')
-    const mainContent = document.getElementById('main-content')
-    scrollDownButton?.addEventListener('click', () => {
-      mainContent?.scrollIntoView({ behavior: 'smooth' })
-    })
+    const scrollDownButton = document.getElementById(
+      'scroll-down-button',
+    ) as HTMLButtonElement
+    const mainElement = document.querySelector('main')
+    if (mainElement) {
+      scrollDownButton.addEventListener('click', () => {
+        mainElement.scrollIntoView({ behavior: 'smooth' })
+      })
+    }
   })
 </script>
