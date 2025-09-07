@@ -1,0 +1,15 @@
+<button
+  id="scroll-down-button"
+  class="text-purple absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded bg-white/60 px-4 py-2 text-xl backdrop-blur-lg md:hidden"
+  >scroll down</button
+>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const scrollDownButton = document.getElementById('scroll-down-button')
+    const mainContent = document.getElementById('main-content')
+    scrollDownButton?.addEventListener('click', () => {
+      mainContent?.scrollIntoView({ behavior: 'smooth' })
+    })
+  })
+</script>
