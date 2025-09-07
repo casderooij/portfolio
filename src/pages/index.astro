@@ -1,8 +1,14 @@
 ---
+import { Image } from 'astro:assets'
 import ExternalLink from '../components/ExternalLink.astro'
 import { ProjectsSphereWrapper } from '../components/projectsSphere/ProjectsSphereWrapper'
 import ScrollDownButton from '../components/ScrollDownButton.astro'
+import Stack from '../components/Stack.astro'
 import '../global.css'
+
+const images = import.meta.glob('/src/projects/synthetic-wander/*.jpg', {
+  eager: true,
+})
 ---
 
 <html lang="en">
@@ -52,6 +58,22 @@ import '../global.css'
             >
           </div>
         </div>
+      </section>
+
+      <section>
+        <Stack>
+          {
+            Object.values(images).map((image: any, index) => (
+              <Image
+                data-index={index}
+                class="stack-item rounded-2xl"
+                src={image.default}
+                alt="Synthetic Wander Image"
+                format="webp"
+              />
+            ))
+          }
+        </Stack>
       </section>
     </main>
   </body>

@@ -1,0 +1,21 @@
+---
+import './stack.css'
+---
+
+<div class="stack-container w-2xl border border-black">
+  <div class="stack circle" data-index="0">
+    <slot />
+    <div class="indicator"></div>
+  </div>
+</div>
+
+<script>
+  import { Stack } from './stack/index.ts'
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const stackElement = document.querySelector('.stack') as HTMLElement
+    if (stackElement) {
+      new Stack(stackElement)
+    }
+  })
+</script>

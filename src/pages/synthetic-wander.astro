@@ -1,0 +1,12 @@
+---
+import Stack from '../components/Stack.astro';
+import { Image } from 'astro:assets';
+
+const images = import.meta.glob('../../../projects/synthetic-wander/*.jpg', { eager: true });
+---
+
+<Stack>
+  {Object.values(images).map(image => (
+    <Image src={image.default} alt="Synthetic Wander Image" format="webp" />
+  ))}
+</Stack>
