@@ -2,9 +2,10 @@
 import { Image } from 'astro:assets'
 import './stack.css'
 
-export interface Item {
-  type: 'image' | 'video'
-  src: ImageMetadata | string
+export type Item = {
+  type: 'image'
+  src: ImageMetadata
+  alt: string
 }
 
 export interface Props {
@@ -24,18 +25,10 @@ const { type, items } = Astro.props
           data-index={index}
           style={`--stack-i: ${index}`}
         >
-          {item.type === 'image' ? (
+          {item.type === 'image' && (
             <Image
-              src={item.src as ImageMetadata}
-              alt="Stack item"
-              class="block h-auto w-full cursor-pointer object-contain"
-            />
-          ) : (
-            <video
-              src={item.src as string}
-              autoplay
-              muted
-              loop
+              src={item.src}
+              alt={item.alt}
               class="block h-auto w-full cursor-pointer object-contain"
             />
           )}

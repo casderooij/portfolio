@@ -67,16 +67,5 @@
       opacity: 0;
       pointer-events: none;
     }
-
-    /* img,
-    video {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      display: block;
-    }
-    video {
-      margin-bottom: -2px;
-    } */
   }
 }

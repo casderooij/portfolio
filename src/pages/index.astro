@@ -1,18 +1,30 @@
 ---
-import { Image } from 'astro:assets'
+import syntheticWander1 from '../projects/synthetic-wander/synthetic-wander-1.jpg'
+import syntheticWander2 from '../projects/synthetic-wander/synthetic-wander-2.jpg'
+import syntheticWander3 from '../projects/synthetic-wander/synthetic-wander-3.jpg'
 import ExternalLink from '../components/ExternalLink.astro'
 import { ProjectsSphereWrapper } from '../components/projectsSphere/ProjectsSphereWrapper'
 import ScrollDownButton from '../components/ScrollDownButton.astro'
 import Stack, { type Item } from '../components/Stack.astro'
 import '../global.css'
 
-const imageImports = import.meta.glob('/src/projects/synthetic-wander/*.jpg', {
-  eager: true,
-})
-const items: Item[] = Object.values(imageImports).map((image: any) => ({
-  type: 'image',
-  src: image.default,
-}))
+const items: Item[] = [
+  {
+    type: 'image',
+    src: syntheticWander1,
+    alt: '',
+  },
+  {
+    type: 'image',
+    src: syntheticWander2,
+    alt: '',
+  },
+  {
+    type: 'image',
+    src: syntheticWander3,
+    alt: '',
+  },
+]
 ---
 
 <html lang="en">
@@ -27,7 +39,7 @@ const items: Item[] = Object.values(imageImports).map((image: any) => ({
     <header class="relative h-[100dvh] w-screen">
       <ProjectsSphereWrapper client:only="react" />
       <h1
-        class="text-purple pointer-events-none absolute top-0 left-0 flex p-4 text-6xl leading-12 md:text-8xl md:leading-20"
+        class="text-purple pointer-events-none absolute top-0 left-0 flex p-4 font-mono text-6xl leading-12 md:text-8xl md:leading-20"
       >
         creative <br />web <br />developer
       </h1>
@@ -37,7 +49,7 @@ const items: Item[] = Object.values(imageImports).map((image: any) => ({
     <main id="main-content" class="my-32 p-4">
       <section class="flex flex-col items-center">
         <div class="max-w-[40rem] text-lg">
-          <p class="font-mono leading-6 text-gray-600">
+          <p class="text-gray-700">
             My name is Cas, and I've been working as a web developer since 2018.
             With a background in design, I am empowered to solve complex
             problems by blending technology with creativity. I'm passionate
@@ -65,7 +77,23 @@ const items: Item[] = Object.values(imageImports).map((image: any) => ({
       </section>
 
       <section class="grid place-content-center pt-24">
-        <Stack type="circle" items={items} />
+        <div class="flex flex-col-reverse gap-10 pt-20 md:flex-row">
+          <div>
+            <h2 class="text-purple mb-4 font-mono text-2xl">
+              Synthetic Wander
+            </h2>
+            <p class="max-w-96 text-gray-700">
+              Installation made for an Open Call at Tante Netty, Eindhoven.
+              Inspired by wandering through neighbourhoods, I came up with an
+              algorithm that creates routes by making "random" choices through a
+              map at each intersection it encounters. This route is then plotted
+              on a small card for the user to take and explore the
+              neighbourhood.<br /><br />
+              The project has been showcased during the Dutch Design week in 2023.
+            </p>
+          </div>
+          <Stack type="circle" items={items} />
+        </div>
       </section>
     </main>
   </body>
