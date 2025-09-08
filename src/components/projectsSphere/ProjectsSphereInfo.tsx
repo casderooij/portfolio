@@ -15,7 +15,7 @@ export function ProjectsSphereInfo() {
   return transitions((style, info) => (
     <animated.div
       style={style}
-      className="absolute right-4 bottom-4 hidden rounded bg-white/80 px-4 py-2 text-xl text-gray-700 backdrop-blur-sm md:block"
+      className="text-text-primary absolute right-4 bottom-4 hidden rounded bg-white/80 px-4 py-2 text-xl backdrop-blur-sm md:block"
     >
       {info}
     </animated.div>

@@ -15,6 +15,7 @@
 @theme {
   --color-bg: #e5e7eb;
   --color-accent: #6c2eff;
+  --color-text-primary: #364153;
 
   --font-sans: 'Hedvig Sans', sans-serif;
   --font-mono: 'Whois Mono', monospace;
