@@ -13,8 +13,8 @@
 }
 
 @theme {
-  --color-bg: #e8e7d7;
-  --color-purple: #6c2eff;
+  --color-bg: #e5e7eb;
+  --color-accent: #6c2eff;
 
   --font-sans: 'Hedvig Sans', sans-serif;
   --font-mono: 'Whois Mono', monospace;
