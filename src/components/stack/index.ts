@@ -14,12 +14,7 @@ export class Stack {
     ) as HTMLElement[]
     this.numberOfStackItems = this.stackItems.length
     this.topStackItem = this.stackItems[0]
-    this.indicatorElement = stackElement.querySelector('.indicator')
-
-    this.stackElement.style.setProperty(
-      '--total-items',
-      String(this.numberOfStackItems),
-    )
+    this.indicatorElement = stackElement.querySelector('#indicator')
 
     this.intialize()
   }

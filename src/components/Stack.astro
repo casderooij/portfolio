@@ -15,7 +15,7 @@ export interface Props {
 const { type, items } = Astro.props
 ---
 
-<div class="stack-container w-96">
+<div class="relative w-96" style="--space: 2em;">
   <div class={`stack ${type}`} style={`--total-items: ${items.length}`}>
     {
       items.map((item, index) => (
@@ -25,14 +25,29 @@ const { type, items } = Astro.props
           style={`--stack-i: ${index}`}
         >
           {item.type === 'image' ? (
-            <Image src={item.src as ImageMetadata} alt="Stack item" />
+            <Image
+              src={item.src as ImageMetadata}
+              alt="Stack item"
+              class="block h-auto w-full cursor-pointer object-contain"
+            />
           ) : (
-            <video src={item.src as string} autoplay muted loop />
+            <video
+              src={item.src as string}
+              autoplay
+              muted
+              loop
+              class="block h-auto w-full cursor-pointer object-contain"
+            />
           )}
         </div>
       ))
     }
-    <div class="indicator"></div>
+    <div
+      id="indicator"
+      class="absolute right-0 -bottom-6 rounded bg-white/50 px-2 font-mono shadow-2xl backdrop-blur-md"
+      style={{ zIndex: items.length + 1 }}
+    >
+    </div>
   </div>
 </div>
 
