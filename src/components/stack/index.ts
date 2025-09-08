@@ -1,9 +1,49 @@
+import { ease } from '../../utils'
+
+function shortestPath(to: number, from: number) {
+  const diff = to - from
+  if (diff > 180) {
+    to -= 360
+  } else if (diff < -180) {
+    to += 360
+  }
+
+  return to
+}
+
+function animateAngle(
+  element: HTMLElement,
+  from: number,
+  to: number,
+  duration: number,
+) {
+  const start = performance.now()
+
+  // Override 'to' angle with the shortest path angle-wise from the 'from' angle
+  to = shortestPath(to, from)
+
+  function frame(time: number) {
+    const elapsed = time - start
+    const progress = Math.min(elapsed / duration, 1)
+    const value = from + (to - from) * ease(progress)
+    element.style.setProperty('--angle', value + 'deg')
+
+    if (progress < 1) {
+      requestAnimationFrame(frame)
+    }
+  }
+
+  requestAnimationFrame(frame)
+}
+
 export class Stack {
   stackElement: HTMLElement
   stackItems: HTMLElement[]
   numberOfStackItems: number
   topStackItem: HTMLElement
   indicatorElement: HTMLElement | null
+  itemAngles: number[]
+  offset: number
 
   constructor(stackElement: HTMLElement) {
     this.stackElement = stackElement
@@ -13,14 +53,24 @@ export class Stack {
     this.numberOfStackItems = this.stackItems.length
     this.topStackItem = this.stackItems[0]
     this.indicatorElement = stackElement.querySelector('#indicator')
+    this.itemAngles = []
+    this.offset = 0
 
     this.intialize()
   }
 
   async intialize() {
+    this.offset =
+      Number(
+        getComputedStyle(this.stackElement).getPropertyValue('--offset'),
+      ) || -80
+
     this.stackItems.forEach((item, index) => {
       item.dataset.index = index.toString()
       item.style.setProperty('--stack-i', index.toString())
+      const angle = index * (360 / this.numberOfStackItems) + this.offset
+      this.itemAngles[index] = angle
+      item.style.setProperty('--angle', angle + 'deg')
     })
 
     const observer = new IntersectionObserver((entries) => {
@@ -76,15 +126,26 @@ export class Stack {
   }
 
   shiftItems() {
-    this.stackItems.forEach((item) => {
-      const itemIndex = parseInt(item.dataset.index || '0')
+    const newAngles = [...this.itemAngles]
 
-      const nextIndex =
-        (itemIndex - 1 + this.numberOfStackItems) % this.numberOfStackItems
+    this.stackItems.forEach((item, i) => {
+      const logicalIndex = parseInt(item.dataset.index || '0')
+      const currentAngle = this.itemAngles[i]
 
-      item.dataset.index = nextIndex.toString()
-      item.style.setProperty('--stack-i', nextIndex.toString())
+      const nextLogicalIndex =
+        (logicalIndex - 1 + this.numberOfStackItems) % this.numberOfStackItems
+
+      const newAngle =
+        nextLogicalIndex * (360 / this.numberOfStackItems) + this.offset
+      newAngles[i] = newAngle
+
+      animateAngle(item, currentAngle, newAngle, 800)
+
+      item.dataset.index = nextLogicalIndex.toString()
+      item.style.setProperty('--stack-i', nextLogicalIndex.toString())
     })
+
+    this.itemAngles = newAngles
   }
 
   playTopItem() {

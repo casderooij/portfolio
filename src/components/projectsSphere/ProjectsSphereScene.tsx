@@ -32,7 +32,7 @@ export default function ProjectsSphereScene() {
         camera={{ position: [0, 0, 7], fov: 75 }}
         className="mask-b-from-80%"
       >
-        <fog attach="fog" args={['#e8e7d7', 4, 10]} />
+        <fog attach="fog" args={['#e5e7eb', 4, 10]} />
         <ProjectsSphere
           radius={isSmallScreen ? MOBILE_RADIUS : DESKTOP_RADIUS}
         />
