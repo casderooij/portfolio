@@ -1,22 +1,26 @@
 @property --angle {
   syntax: '<angle>';
-  initial-value: 10deg;
+  initial-value: 0deg;
   inherits: false;
+}
+
+.stack {
+  --space: 2rem;
 }
 
 .stack.circle {
   --radius: var(--space);
-  --offset: 80deg;
+  --offset: -80deg;
 
   .stack-item {
     transform: translate(
-      calc(cos(var(--angle)) * var(--radius)),
-      calc(sin(var(--angle)) * var(--radius))
+      calc(cos(var(--angle)) * 1 * var(--radius)),
+      calc(sin(var(--angle)) * -1 * var(--radius))
     );
 
     transition:
       --angle 0.8s var(--easing),
-      opacity 0.3s ease-in-out;
+      opacity 0.2s ease-in-out;
   }
 }
 
@@ -39,6 +43,7 @@
 }
 
 .stack {
+  /* --easing: cubic-bezier(0.22, 1, 0.36, 1); */
   --easing: cubic-bezier(0.22, 1, 0.36, 1);
 
   display: grid;
@@ -50,7 +55,8 @@
     );
 
     width: calc(100% - var(--space));
-    aspect-ratio: var(--aspect-ratio);
+    padding-left: var(--space);
+    /* aspect-ratio: var(--aspect-ratio); */
 
     grid-area: stack;
     z-index: calc(var(--total-items) - var(--stack-i));

@@ -1,5 +1,3 @@
-import { primeVideos } from './prime-videos'
-
 export class Stack {
   stackElement: HTMLElement
   stackItems: HTMLElement[]
@@ -50,8 +48,6 @@ export class Stack {
       this.pauseAndHideTopItem()
       this.updateIndicator()
     })
-
-    await primeVideos(this.stackItems)
 
     this.stackItems.forEach((item) => {
       if (item.dataset.index !== '0') {

@@ -5,7 +5,7 @@ import syntheticWander3 from '../projects/synthetic-wander/synthetic-wander-3.jp
 import ExternalLink from '../components/ExternalLink.astro'
 import { ProjectsSphereWrapper } from '../components/projectsSphere/ProjectsSphereWrapper'
 import ScrollDownButton from '../components/ScrollDownButton.astro'
-import Stack, { type Item } from '../components/Stack.astro'
+import Stack, { type Item } from '../components/stack/Stack.astro'
 import '../global.css'
 
 const items: Item[] = [
@@ -37,7 +37,7 @@ const items: Item[] = [
   </head>
   <body class="bg-bg">
     <header
-      class="relative mx-auto h-[100dvh] w-full md:h-[800px] md:max-h-[100dvh] md:w-[1200px]"
+      class="relative mx-auto h-[100dvh] w-full max-w-screen md:h-[800px] md:max-h-[100dvh] md:w-[1200px]"
     >
       <ProjectsSphereWrapper client:only="react" />
       <h1
@@ -95,7 +95,9 @@ const items: Item[] = [
               The project was showcased during the Dutch Design Week in 2021.
             </p>
           </div>
-          <Stack type="circle" items={items} />
+          <div class="relative mx-auto px-8 md:mx-0 md:w-96 md:px-0">
+            <Stack type="circle" items={items} />
+          </div>
         </div>
       </section>
     </main>
