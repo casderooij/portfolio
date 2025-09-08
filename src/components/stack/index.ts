@@ -1,15 +1,12 @@
-function ease(v, pow = 4) {
-  return 1 - Math.pow(1 - v, pow)
+import { ease } from '../../utils'
+
+type ItemAnimationProperties = {
+  element: HTMLElement
+  from: number
+  to: number
 }
 
-function animateStack(
-  items: {
-    element: HTMLElement
-    from: number
-    to: number
-  }[],
-  duration: number,
-) {
+function animateStack(items: ItemAnimationProperties[], duration: number) {
   const start = performance.now()
 
   function frame(time: number) {
@@ -121,11 +118,7 @@ export class Stack {
   shiftItems() {
     const newAngles = [...this.itemAngles]
 
-    const itemsToAnimate: {
-      element: HTMLElement
-      from: number
-      to: number
-    }[] = []
+    const itemsToAnimate: ItemAnimationProperties[] = []
 
     this.stackItems.forEach((item, i) => {
       const logicalIndex = parseInt(item.dataset.index || '0')
