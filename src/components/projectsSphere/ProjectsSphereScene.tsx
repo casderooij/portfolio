@@ -30,7 +30,7 @@ export default function ProjectsSphereScene() {
     <animated.div style={{ opacity }} className="h-full">
       <Canvas
         camera={{ position: [0, 0, 7], fov: 75 }}
-        style={{ height: '100vh' }}
+        className="mask-b-from-80%"
       >
         <fog attach="fog" args={['#e8e7d7', 4, 10]} />
         <ProjectsSphere

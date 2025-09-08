@@ -16,7 +16,10 @@ export interface Props {
 const { type, items } = Astro.props
 ---
 
-<div class="relative w-96" style="--space: 2em;">
+<div
+  class="relative mx-auto px-8 md:mx-0 md:w-96 md:px-0"
+  style="--space: 2em;"
+>
   <div class={`stack ${type}`} style={`--total-items: ${items.length}`}>
     {
       items.map((item, index) => (
