@@ -1,5 +1,3 @@
-
-
 .stack {
   --space: 2rem;
 }
@@ -14,8 +12,7 @@
       calc(sin(var(--angle)) * -1 * var(--radius))
     );
 
-    transition:
-      opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
   }
 }
 
@@ -42,6 +39,7 @@
   grid-template-areas: 'stack';
 
   .stack-item {
+    position: relative;
     width: calc(100% - var(--space));
     padding-left: var(--space);
     /* aspect-ratio: var(--aspect-ratio); */
@@ -49,12 +47,20 @@
     grid-area: stack;
     z-index: calc(var(--total-items) - var(--stack-i));
 
-    &.fading-out {
-      opacity: 0;
+    .fog-layer {
+      position: absolute;
+      top: 0;
+      left: var(--space);
+      width: calc(100% - var(--space));
+      height: 100%;
+      background-color: var(--color-bg);
+      opacity: var(--fog-opacity, 0);
+      pointer-events: none;
+      transition: opacity 0.8s var(--easing);
     }
 
-    &.no-transition {
-      transition: none;
+    &.fading-out {
+      opacity: 0;
     }
 
     &.is-hidden {
