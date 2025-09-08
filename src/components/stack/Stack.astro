@@ -20,7 +20,7 @@ const { type, items } = Astro.props
   {
     items.map((item, index) => (
       <div class="stack-item" data-index={index} style={`--stack-i: ${index}`}>
-        <div class="fog-layer"></div>
+        <div class="fog-layer" />
         {item.type === 'image' && (
           <Image
             src={item.src}
