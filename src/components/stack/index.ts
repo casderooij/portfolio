@@ -1,32 +1,25 @@
-import { ease } from '../../utils'
-
-function shortestPath(to: number, from: number) {
-  const diff = to - from
-  if (diff > 180) {
-    to -= 360
-  } else if (diff < -180) {
-    to += 360
-  }
-
-  return to
+function ease(v, pow = 4) {
+  return 1 - Math.pow(1 - v, pow)
 }
 
-function animateAngle(
-  element: HTMLElement,
-  from: number,
-  to: number,
+function animateStack(
+  items: {
+    element: HTMLElement
+    from: number
+    to: number
+  }[],
   duration: number,
 ) {
   const start = performance.now()
 
-  // Override 'to' angle with the shortest path angle-wise from the 'from' angle
-  to = shortestPath(to, from)
-
   function frame(time: number) {
     const elapsed = time - start
     const progress = Math.min(elapsed / duration, 1)
-    const value = from + (to - from) * ease(progress)
-    element.style.setProperty('--angle', value + 'deg')
+
+    items.forEach((item) => {
+      const value = item.from + (item.to - item.from) * ease(progress)
+      item.element.style.setProperty('--angle', value + 'deg')
+    })
 
     if (progress < 1) {
       requestAnimationFrame(frame)
@@ -60,10 +53,10 @@ export class Stack {
   }
 
   async intialize() {
-    this.offset =
-      Number(
-        getComputedStyle(this.stackElement).getPropertyValue('--offset'),
-      ) || -80
+    const offsetString = getComputedStyle(this.stackElement).getPropertyValue(
+      '--offset',
+    )
+    this.offset = parseInt(offsetString) || -80
 
     this.stackItems.forEach((item, index) => {
       item.dataset.index = index.toString()
@@ -128,6 +121,12 @@ export class Stack {
   shiftItems() {
     const newAngles = [...this.itemAngles]
 
+    const itemsToAnimate: {
+      element: HTMLElement
+      from: number
+      to: number
+    }[] = []
+
     this.stackItems.forEach((item, i) => {
       const logicalIndex = parseInt(item.dataset.index || '0')
       const currentAngle = this.itemAngles[i]
@@ -139,11 +138,25 @@ export class Stack {
         nextLogicalIndex * (360 / this.numberOfStackItems) + this.offset
       newAngles[i] = newAngle
 
-      animateAngle(item, currentAngle, newAngle, 800)
+      let targetAngleForAnimation = newAngle
+      const diff = targetAngleForAnimation - currentAngle
+      if (diff > 180) {
+        targetAngleForAnimation -= 360
+      } else if (diff < -180) {
+        targetAngleForAnimation += 360
+      }
+
+      itemsToAnimate.push({
+        element: item,
+        from: currentAngle,
+        to: targetAngleForAnimation,
+      })
 
       item.dataset.index = nextLogicalIndex.toString()
       item.style.setProperty('--stack-i', nextLogicalIndex.toString())
     })
+
+    animateStack(itemsToAnimate, 800)
 
     this.itemAngles = newAngles
   }
