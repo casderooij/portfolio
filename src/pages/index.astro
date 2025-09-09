@@ -1,12 +1,12 @@
 ---
-import syntheticWander1 from '../projects/synthetic-wander/synthetic-wander-1.jpg'
-import syntheticWander2 from '../projects/synthetic-wander/synthetic-wander-2.jpg'
-import syntheticWander3 from '../projects/synthetic-wander/synthetic-wander-3.jpg'
 import ExternalLink from '../components/ExternalLink.astro'
 import { ProjectsSphereWrapper } from '../components/projectsSphere/ProjectsSphereWrapper'
 import ScrollDownButton from '../components/ScrollDownButton.astro'
 import Stack from '../components/stack/Stack.astro'
 import '../global.css'
+import syntheticWander1 from '../projects/synthetic-wander/synthetic-wander-1.jpg'
+import syntheticWander2 from '../projects/synthetic-wander/synthetic-wander-2.jpg'
+import syntheticWander3 from '../projects/synthetic-wander/synthetic-wander-3.jpg'
 ---
 
 <html lang="en">
@@ -116,6 +116,7 @@ import '../global.css'
                   {
                     type: 'video',
                     src: '/synthetic-wander-route-algo.mp4',
+                    orientation: 'landscape',
                   },
                 ]}
                 client:idle
