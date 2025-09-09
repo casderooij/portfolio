@@ -47,17 +47,7 @@
     grid-area: stack;
     z-index: calc(var(--total-items) - var(--stack-i));
 
-    .fog-layer {
-      position: absolute;
-      top: 0;
-      left: var(--space);
-      width: calc(100% - var(--space));
-      height: 100%;
-      background-color: var(--color-bg);
-      opacity: var(--fog-opacity, 0);
-      pointer-events: none;
-      transition: opacity 0.8s var(--easing);
-    }
+    
 
     &.fading-out {
       opacity: 0;

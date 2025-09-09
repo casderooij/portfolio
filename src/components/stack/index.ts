@@ -1,11 +1,7 @@
-const MAX_OPACITY_VALUE = 0.75
-
 type ItemAnimationProps = {
   element: HTMLElement
   fromAngle: number
   toAngle: number
-  fromOpacity: number
-  toOpacity: number
 }
 
 function ease(v: number, pow = 4) {
@@ -24,9 +20,7 @@ function animateStack(items: ItemAnimationProps[], duration: number) {
         item.fromAngle + (item.toAngle - item.fromAngle) * ease(progress)
       item.element.style.setProperty('--angle', angle + 'deg')
 
-      const opacity =
-        item.fromOpacity + (item.toOpacity - item.fromOpacity) * ease(progress)
-      item.element.style.setProperty('--fog-opacity', opacity.toString())
+      
     })
 
     if (progress < 1) {
@@ -74,24 +68,8 @@ export class Stack {
       this.itemAngles[index] = angle
       item.style.setProperty('--angle', angle + 'deg')
 
-      const opacity =
-        (index / (this.numberOfStackItems - 1)) * MAX_OPACITY_VALUE
-      item.style.setProperty('--fog-opacity', opacity.toString())
+      
     })
-
-    const observer = new IntersectionObserver((entries) => {
-      const { isIntersecting } = entries[0]
-
-      const topItemVideo = this.getVideo(this.topStackItem)
-      if (!topItemVideo) return
-
-      if (isIntersecting && topItemVideo.paused) {
-        topItemVideo.play()
-      } else if (!isIntersecting) {
-        topItemVideo.pause()
-      }
-    })
-    observer.observe(this.stackElement)
 
     if (this.numberOfStackItems === 1) {
       return
@@ -109,17 +87,11 @@ export class Stack {
       if (item.dataset.index !== '0') {
         item.classList.remove('is-hidden')
       } else {
-        const video = this.getVideo(item)
-        if (video) {
-          video.play()
-        }
       }
     })
   }
 
-  getVideo(stackItem: HTMLElement) {
-    return stackItem.querySelector('video')
-  }
+  
 
   getTopItem() {
     return this.stackItems.find(
@@ -138,8 +110,6 @@ export class Stack {
     this.stackItems.forEach((item, i) => {
       const logicalIndex = parseInt(item.dataset.index || '0')
       const currentAngle = this.itemAngles[i]
-      const fromOpacity =
-        (logicalIndex / (this.numberOfStackItems - 1)) * MAX_OPACITY_VALUE
 
       const nextLogicalIndex =
         (logicalIndex - 1 + this.numberOfStackItems) % this.numberOfStackItems
@@ -156,15 +126,10 @@ export class Stack {
         targetAngleForAnimation += 360
       }
 
-      const toOpacity =
-        (nextLogicalIndex / (this.numberOfStackItems - 1)) * MAX_OPACITY_VALUE
-
       itemsToAnimate.push({
         element: item,
         fromAngle: currentAngle,
         toAngle: targetAngleForAnimation,
-        fromOpacity,
-        toOpacity,
       })
 
       item.dataset.index = nextLogicalIndex.toString()
@@ -176,14 +141,7 @@ export class Stack {
     this.itemAngles = newAngles
   }
 
-  playTopItem() {
-    const topItem = this.getTopItem()
-    if (!topItem) return
-
-    const video = topItem.querySelector('video')
-    if (!video) return
-    video.play()
-  }
+  
 
   updateStackIndex() {
     const nextIndex =
@@ -199,13 +157,7 @@ export class Stack {
       topItem.addEventListener(
         'transitionend',
         () => {
-          const video = this.getVideo(topItem)
-          if (video) {
-            video.pause()
-          }
-
           this.shiftItems()
-          this.playTopItem()
 
           // Allow DOM to update before removing the class
           setTimeout(() => {
