@@ -24,7 +24,11 @@ export interface Props {
 const { type, items } = Astro.props
 ---
 
-<div class={`stack ${type}  relative`} style={`--total-items: ${items.length}`} tabindex="0">
+<div
+  class={`stack ${type} relative py-8 `}
+  style={`--total-items: ${items.length}`}
+  tabindex="0"
+>
   {
     items.map((item, index) => (
       <div
@@ -32,7 +36,6 @@ const { type, items } = Astro.props
         data-index={index}
         style={`--stack-i: ${index}`}
       >
-        
         {item.type === 'image' && (
           <Image
             src={item.src}
@@ -58,7 +61,9 @@ const { type, items } = Astro.props
   import { Stack } from './index.ts'
 
   document.addEventListener('DOMContentLoaded', () => {
-    const stackElements = document.querySelectorAll('.stack') as NodeListOf<HTMLElement>
+    const stackElements = document.querySelectorAll(
+      '.stack',
+    ) as NodeListOf<HTMLElement>
     stackElements.forEach((stackElement) => {
       if (stackElement) {
         new Stack(stackElement)

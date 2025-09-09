@@ -57,10 +57,10 @@ const items: Item[] = [
       class="mx-auto my-32 flex max-w-[760px] flex-col gap-44 p-4"
     >
       <section class="flex flex-col">
-        <h2 class="text-accent mb-2 font-mono text-3xl md:text-5xl">
+        <h2 class="text-accent mb-4 font-mono text-3xl md:text-5xl">
           About me
         </h2>
-        <div class="text-text-primary flex flex-col gap-6 md:w-2/3">
+        <div class="flex flex-col gap-6 md:w-2/3">
           <p class="text-xl">
             I am a web developer working at the intersection of user experience,
             design and technology. Since 2018, I've been building solutions such
@@ -94,25 +94,27 @@ const items: Item[] = [
       </section>
 
       <section class="grid place-content-center">
-        <div class="lg:-mx-14">
-          <div class="h-[1px] bg-black/10"></div>
-        </div>
+        <h2 class="text-accent mb-4 font-mono text-3xl md:text-5xl">Work</h2>
 
-        <div class="flex flex-col-reverse gap-14 pt-20 md:flex-row">
+        <div class="flex flex-col-reverse gap-4 pt-20 md:flex-row md:gap-14">
           <div class="flex-1">
-            <h2 class="text-accent mb-2 font-mono text-3xl">
+            <h3 class="text-accent mb-4 font-mono text-3xl">
               Synthetic Wander
-            </h2>
-            <p class="text-text-primary">
-              This installation invites participants to wander and discover the
-              city through exploration. An algorithm generates a random route on
-              a map, which is then plotted onto a physical card for users to
-              follow. The installation was developed during an Open Call at
-              Tante Netty in Eindhoven and was showcased at Dutch Design Week
-              2021.
-            </p>
+            </h3>
+            <div class="flex flex-col gap-6">
+              <p>
+                This installation invites participants to wander and discover
+                the city through exploration. An algorithm generates a random
+                route on a map, which is then plotted onto a physical card for
+                users to follow.
+              </p>
+              <p>
+                The installation was developed during an Open Call at Tante
+                Netty in Eindhoven and was showcased at Dutch Design Week 2021.
+              </p>
+            </div>
           </div>
-          <div class="relative mx-auto flex-1 px-2 md:mx-0 md:w-96 md:px-0">
+          <div class="relative flex-1 px-2">
             <Stack type="circle" items={items} client:idle />
           </div>
         </div>

@@ -20,3 +20,7 @@
   --font-sans: 'Hedvig Sans', sans-serif;
   --font-mono: 'Whois Mono', monospace;
 }
+
+body {
+  color: var(--color-text-primary);
+}
