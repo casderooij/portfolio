@@ -19,8 +19,6 @@ function animateStack(items: ItemAnimationProps[], duration: number) {
       const angle =
         item.fromAngle + (item.toAngle - item.fromAngle) * ease(progress)
       item.element.style.setProperty('--angle', angle + 'deg')
-
-      
     })
 
     if (progress < 1) {
@@ -67,8 +65,6 @@ export class Stack {
       const angle = index * (360 / this.numberOfStackItems) + this.offset
       this.itemAngles[index] = angle
       item.style.setProperty('--angle', angle + 'deg')
-
-      
     })
 
     if (this.numberOfStackItems === 1) {
@@ -78,9 +74,13 @@ export class Stack {
     this.updateIndicator()
 
     this.stackElement.addEventListener('click', () => {
-      this.updateStackIndex()
-      this.pauseAndHideTopItem()
-      this.updateIndicator()
+      this.goToNextItem()
+    })
+
+    this.stackElement.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        this.goToNextItem()
+      }
     })
 
     this.stackItems.forEach((item) => {
@@ -90,8 +90,6 @@ export class Stack {
       }
     })
   }
-
-  
 
   getTopItem() {
     return this.stackItems.find(
@@ -141,15 +139,13 @@ export class Stack {
     this.itemAngles = newAngles
   }
 
-  
-
   updateStackIndex() {
     const nextIndex =
       (this.getCurrentStackIndex() + 1) % this.numberOfStackItems
     this.stackElement.dataset.index = nextIndex.toString()
   }
 
-  pauseAndHideTopItem() {
+  hideTopItem() {
     const topItem = this.getTopItem()
 
     if (topItem) {
@@ -179,5 +175,11 @@ export class Stack {
     ).join('')
 
     this.indicatorElement.textContent = indicatorString
+  }
+
+  goToNextItem() {
+    this.updateStackIndex()
+    this.hideTopItem()
+    this.updateIndicator()
   }
 }

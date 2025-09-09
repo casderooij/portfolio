@@ -24,7 +24,7 @@ export interface Props {
 const { type, items } = Astro.props
 ---
 
-<div class={`stack ${type}  relative`} style={`--total-items: ${items.length}`}>
+<div class={`stack ${type}  relative`} style={`--total-items: ${items.length}`} tabindex="0">
   {
     items.map((item, index) => (
       <div
