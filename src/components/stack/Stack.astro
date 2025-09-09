@@ -12,7 +12,7 @@ type ImageItem = {
 type VideoItem = {
   type: 'video'
   src: string
-  isPortrait?: boolean
+  orientation: 'landscape' | 'portrait'
 }
 
 export type Item = ImageItem | VideoItem
@@ -27,7 +27,11 @@ const { type, items } = Astro.props
 
 <div
   class={`stack ${type} relative py-8`}
-  style={`--total-items: ${items.length}; --space: 2rem; --offset: ${items.length > 2 ? '-80deg' : '0deg'};`}
+  style={`
+    --total-items: ${items.length};
+    --space: ${items.length > 2 ? '2rem' : '1rem'};
+    --offset: ${items.length > 2 ? '-80deg' : '0deg'};
+  `}
   tabindex="0"
 >
   {
@@ -39,7 +43,9 @@ const { type, items } = Astro.props
       >
         {item.type === 'image' && <Image src={item.src} alt={item.alt} />}
         {item.type === 'video' && (
-          <div style={`width: ${item.isPortrait ? '75%' : '100%'}`}>
+          <div
+            style={`width: ${item.orientation === 'portrait' ? '75%' : '100%'}`}
+          >
             <Video src={item.src} />
           </div>
         )}
