@@ -1,7 +1,3 @@
-.stack {
-  --space: 2rem;
-}
-
 .stack:focus {
   outline: none; /* Remove default outline on click focus */
 }
@@ -13,7 +9,6 @@
 
 .stack.circle {
   --radius: var(--space);
-  --offset: -80deg;
 
   .stack-item {
     transform: translate(
@@ -50,13 +45,15 @@
   .stack-item {
     position: relative;
     width: calc(100% - var(--space));
-    padding-left: var(--space);
-    /* aspect-ratio: var(--aspect-ratio); */
 
     grid-area: stack;
     z-index: calc(var(--total-items) - var(--stack-i));
 
-    
+    padding-left: var(--space);
+
+    @media (width >= 48rem) {
+      padding-left: 0;
+    }
 
     &.fading-out {
       opacity: 0;

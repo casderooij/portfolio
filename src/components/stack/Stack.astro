@@ -12,6 +12,7 @@ type ImageItem = {
 type VideoItem = {
   type: 'video'
   src: string
+  isPortrait?: boolean
 }
 
 export type Item = ImageItem | VideoItem
@@ -25,8 +26,8 @@ const { type, items } = Astro.props
 ---
 
 <div
-  class={`stack ${type} relative py-8 `}
-  style={`--total-items: ${items.length}`}
+  class={`stack ${type} relative py-8`}
+  style={`--total-items: ${items.length}; --space: 2rem; --offset: ${items.length > 2 ? '-80deg' : '0deg'};`}
   tabindex="0"
 >
   {
@@ -36,15 +37,11 @@ const { type, items } = Astro.props
         data-index={index}
         style={`--stack-i: ${index}`}
       >
-        {item.type === 'image' && (
-          <Image
-            src={item.src}
-            alt={item.alt}
-            class="block h-auto w-full object-contain"
-          />
-        )}
+        {item.type === 'image' && <Image src={item.src} alt={item.alt} />}
         {item.type === 'video' && (
-          <Video src="/synthetic-wander-route-algo.mp4" />
+          <div style={`width: ${item.isPortrait ? '75%' : '100%'}`}>
+            <Video src={item.src} />
+          </div>
         )}
       </div>
     ))
