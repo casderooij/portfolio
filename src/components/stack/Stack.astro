@@ -1,12 +1,20 @@
 ---
 import { Image } from 'astro:assets'
+import Video from '../Video.astro'
 import './stack.css'
 
-export type Item = {
+type ImageItem = {
   type: 'image'
   src: ImageMetadata
   alt: string
 }
+
+type VideoItem = {
+  type: 'video'
+  src: string
+}
+
+export type Item = ImageItem | VideoItem
 
 export interface Props {
   type: 'circle' | 'wave'
@@ -27,6 +35,9 @@ const { type, items } = Astro.props
             alt={item.alt}
             class="block h-auto w-full cursor-pointer object-contain"
           />
+        )}
+        {item.type === 'video' && (
+          <Video src="/synthetic-wander-route-algo.mp4" />
         )}
       </div>
     ))
