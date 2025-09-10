@@ -10,6 +10,7 @@ const { src } = Astro.props
   muted
   playsinline
   loop
+  autoplay
   preload="none"
   data-src={src}
   class="h-full w-full object-contain"></video>
@@ -50,32 +51,32 @@ const { src } = Astro.props
     videoElements.forEach((videoElement) => {
       if (videoElement) {
         lazyObserver.observe(videoElement)
-        const stackItem: HTMLElement | null =
-          videoElement.closest('.stack-item')
-        if (stackItem) {
-          const mutationObserver = new MutationObserver((mutations) => {
-            for (const mutation of mutations) {
-              if (
-                mutation.type === 'attributes' &&
-                mutation.attributeName === 'data-index'
-              ) {
-                const isTopInStack = stackItem.dataset.index === '0'
-                // Check if the video is currently visible before playing
-                const isIntersecting =
-                  videoElement.getBoundingClientRect().top <
-                    window.innerHeight &&
-                  videoElement.getBoundingClientRect().bottom > 0
-                if (isTopInStack && isIntersecting) {
-                  videoElement.play()
-                } else {
-                  videoElement.pause()
-                }
-              }
-            }
-          })
+        // const stackItem: HTMLElement | null =
+        //   videoElement.closest('.stack-item')
+        // if (stackItem) {
+        //   const mutationObserver = new MutationObserver((mutations) => {
+        //     for (const mutation of mutations) {
+        //       if (
+        //         mutation.type === 'attributes' &&
+        //         mutation.attributeName === 'data-index'
+        //       ) {
+        //         const isTopInStack = stackItem.dataset.index === '0'
+        //         // Check if the video is currently visible before playing
+        //         const isIntersecting =
+        //           videoElement.getBoundingClientRect().top <
+        //             window.innerHeight &&
+        //           videoElement.getBoundingClientRect().bottom > 0
+        //         if (isTopInStack && isIntersecting) {
+        //           videoElement.play()
+        //         } else {
+        //           videoElement.pause()
+        //         }
+        //       }
+        //     }
+        //   })
 
-          mutationObserver.observe(stackItem, { attributes: true })
-        }
+        //   mutationObserver.observe(stackItem, { attributes: true })
+        // }
       }
     })
   })
