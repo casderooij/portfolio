@@ -50,6 +50,7 @@
     z-index: calc(var(--total-items) - var(--stack-i));
 
     padding-left: var(--space);
+    margin-block: auto;
 
     @media (width >= 48rem) {
       padding-left: 0;
