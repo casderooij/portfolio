@@ -86,7 +86,6 @@ export class Stack {
     this.stackItems.forEach((item) => {
       if (item.dataset.index !== '0') {
         item.classList.remove('is-hidden')
-      } else {
       }
     })
   }
@@ -154,6 +153,7 @@ export class Stack {
         'transitionend',
         () => {
           this.shiftItems()
+          this.playAndPauseVideos()
 
           // Allow DOM to update before removing the class
           setTimeout(() => {
@@ -163,6 +163,19 @@ export class Stack {
         { once: true },
       )
     }
+  }
+
+  playAndPauseVideos() {
+    this.stackItems.forEach((item) => {
+      const video = item.querySelector('video')
+      if (video) {
+        if (item.dataset.index === '0') {
+          video.play()
+        } else {
+          video.pause()
+        }
+      }
+    })
   }
 
   updateIndicator() {
