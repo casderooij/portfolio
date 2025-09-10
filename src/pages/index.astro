@@ -34,16 +34,21 @@ import syntheticWander3 from '../projects/synthetic-wander/synthetic-wander-3.jp
     <title>Cas de Rooij - creative web developer</title>
   </head>
   <body class="bg-bg">
-    <header
-      class="relative mx-auto h-[100dvh] w-full max-w-screen md:h-[800px] md:max-h-[100dvh] md:w-[1200px]"
-    >
-      <ProjectsSphereWrapper client:only="react" />
-      <h1
-        class="text-accent pointer-events-none absolute top-0 left-0 flex p-4 font-mono text-6xl leading-12 md:text-6xl"
+    <header class="relative">
+      <div
+        class="mx-auto h-[100dvh] w-full max-w-screen md:h-[800px] md:max-h-[100dvh] md:w-[1200px]"
       >
-        creative <br />web developer
+        <ProjectsSphereWrapper client:only="react" />
+        <ScrollDownButton />
+      </div>
+
+      <h1
+        class="text-accent pointer-events-none absolute top-4 left-4 flex max-w-[400px] flex-wrap gap-1 font-mono text-4xl leading-9 md:gap-2 md:text-5xl md:leading-12"
+      >
+        <span class="rounded bg-white px-2 pt-0.5 pb-1">creative</span>
+        <span class="rounded bg-white px-2 pt-0.5 pb-1">web</span>
+        <span class="rounded bg-white px-2 pt-0.5 pb-1">developer</span>
       </h1>
-      <ScrollDownButton />
     </header>
 
     <main
